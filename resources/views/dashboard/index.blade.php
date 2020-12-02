@@ -11,6 +11,7 @@
                 <!-- Topbar (nav) -->
                 @include('dashboard.includes.nav')
                 <!-- /Topbar (nav) -->
+                @include('dashboard.includes.message')
                 <!-- Container Fluid-->
                 @yield('content')
                 <!-- /Container Fluid-->

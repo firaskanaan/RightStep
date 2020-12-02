@@ -24,13 +24,7 @@ Route::get('/', function () {
 });
 
 //  Categories Section
-Route::get('/showCategories', function () {
-    return view('dashboard.pages.category.showCategories');
-});
-Route::get('/addCategory', function () {
-    return view('dashboard.pages.category.addCategory');
-});
-
+Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
 
 //  Products Section
 Route::get('/showProducts', function () {

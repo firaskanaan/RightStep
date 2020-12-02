@@ -18,7 +18,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Add new category</h6>
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{url('/')}}">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{route('categories.store')}}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Category name</label>

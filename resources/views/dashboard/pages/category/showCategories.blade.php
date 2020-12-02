@@ -22,41 +22,48 @@
                         <table class="table align-items-center table-flush table-hover" id="categoryTable">
                             <thead class="thead-light">
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Parent</th>
                                 <th>Created at</th>
-                                <th>#</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Parent</th>
                                 <th>Created at</th>
-                                <th>#</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                             <tbody>
+                                @isset($categories)
+                                @foreach($categories as $category)
                                 <tr>
-                                    <td>Tiger Nixon</td>
+                                    <td>{{$category->id}}</td>
+                                    <td>{{$category->name}}</td>
                                     <td class="table-user" data-toggle="modal" data-target="#descriptionModal">
                                         <div>
-                                            sdfgrthy kudu kdtyuyy sdfgrthy kudu kdt yuyysdfgrth ykudu k dtyuyy sdfgrthyk udu kdtyuyy
+                                            {{$category->description}}
                                         </div>
                                     </td>
-                                    <td>Edinburgh</td>
-                                    <td>2011/04/25</td>
+                                    <td>{{$category->parent}}</td>
+                                    <td>{{$category->created_at}}</td>
                                     <td>
-                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteCategoryModal">
+                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteCategoryModal{{$category->id}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editCategoryModal">
+                                        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editCategoryModal{{$category->id}}">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </td>
                                 </tr>
+                                @endforeach
+                                @endisset
                             </tbody>
                         </table>
                     </div>

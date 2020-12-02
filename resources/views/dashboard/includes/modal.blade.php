@@ -52,8 +52,10 @@
 <!-- /Modal description category -->
 
 
-<!-- Modal edit category -->
-<div class="modal fade show" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCateModal" aria-modal="true" >
+@isset($categories)
+    @foreach($categories as $category)
+        <!-- Modal edit category -->
+        <div class="modal fade show" id="editCategoryModal{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="editCateModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,20 +65,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{url('/')}}">
+                <form class="form-horizontal" enctype="multipart/form-data" action="{{route('categories.update',$category -> id)}}" method="POST" >
+                    @method('PUT')
                     @csrf
                     <div class="form-group">
                         <label for="name">Category name</label>
-                        <input type="text" class="form-control" value="firas" id="name" aria-describedby="name" placeholder="Category name" name="name" required>
+                        <input type="text" class="form-control" value="{{$category->name}}" id="name" aria-describedby="name" placeholder="Category name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea name="description" placeholder="Category description.." class="form-control"
-                                  required id="description" rows="3">firas</textarea>
+                                  required id="description" rows="3">{{$category->description}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="parent">Parent</label>
-                        <input type="text" class="form-control" value="parent" id="parent" name="parent" placeholder="Parent.." required>
+                        <input type="text" class="form-control" value="{{$category->parent}}" id="parent" name="parent" placeholder="Parent.." required>
                     </div>
                     <button type="submit" class="btn btn-primary">Ok, Edit</button>
                 </form>
@@ -87,30 +90,39 @@
         </div>
     </div>
 </div>
-<!-- /Modal edit category -->
+        <!-- /Modal edit category -->
 
+        <!-- Modal delete category -->
+        <div class="modal fade show" id="deleteCategoryModal{{$category-> id}}" tabindex="-1" role="dialog" aria-labelledby="editCateModal" aria-modal="true" >
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCateModal">Category delete!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure to delete this?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post"
+                              action="{{route('categories.destroy',$category-> id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Yes,delete</button>
+                        </form>
 
-<!-- Modal delete category -->
-<div class="modal fade show" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCateModal" aria-modal="true" >
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="editCateModal">Category delete!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-            <div class="modal-body">
-                <p>Are you sure to delete this?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-danger">Yes,delete</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- /Modal delete category -->
+        <!-- /Modal delete category -->
+
+    @endforeach
+@endisset
+
 
 
 <!-- Modal edit user -->
