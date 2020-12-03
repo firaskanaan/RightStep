@@ -1903,3 +1903,12 @@ body.sidebar-toggled footer.sticky-footer {
     white-space: nowrap;
     width: 150px;
 }
+
+.body-text {
+    height: 70px;
+    overflow-y: scroll;
+}
+.body-text::-webkit-scrollbar {width: 2px;}
+.body-text::-webkit-scrollbar-track {background: rgba(241, 241, 241, 0);}
+.body-text::-webkit-scrollbar-thumb {background: #fff;  border-radius: 30px;}
+.card-body:hover>.body-text::-webkit-scrollbar-thumb{background: #23a6d5;}

@@ -4311,6 +4311,19 @@ input[type="button"].btn-block {
   background-color: #23a6d5;
 }
 
+
+.custom-control-input.check-danger:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #fc544b;
+    background-color: #fc544b;
+}
+
+.custom-control-input.check-success:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #66bb6a;
+    background-color: #66bb6a;
+}
+
 .custom-control-input:focus~.custom-control-label::before {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
   box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);

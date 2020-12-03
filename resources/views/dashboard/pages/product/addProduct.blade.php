@@ -52,7 +52,6 @@
                                     <option value="">3</option>
                                 </select>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Ok, Add</button>
                         </form>
                     </div>
