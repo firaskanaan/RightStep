@@ -76,6 +76,12 @@ a:focus {
   font-weight: 800
 }
 
+.statue-store {
+    top: 40px;
+    left: 100px;
+    position: absolute;
+}
+
 @-webkit-keyframes growIn {
   0% {
       -webkit-transform: scale(.9);
@@ -772,7 +778,7 @@ a:focus {
 }
 
 .sidebar .sidebar-brand .sidebar-brand-icon img {
-  max-height: 2.3rem
+  max-height: 2.8rem
 }
 
 .sidebar hr.sidebar-divider {

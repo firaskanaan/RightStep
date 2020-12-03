@@ -48,3 +48,9 @@ Route::get('/showUsers', function () {
 Route::get('/addUser', function () {
     return view('dashboard.pages.user.addUser');
 });
+
+
+//  Setting
+Route::get('/setting', function () {
+    return view('dashboard.pages.setting.setting');
+});
