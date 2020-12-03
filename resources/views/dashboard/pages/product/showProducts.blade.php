@@ -22,44 +22,57 @@
                         <table class="table align-items-center table-flush table-hover" id="productTable">
                             <thead class="thead-light">
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Price</th>
                                 <th>Stock</th>
                                 <th>Category</th>
-                                <th>#</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Price</th>
                                 <th>Stock</th>
                                 <th>Category</th>
-                                <th>#</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
+                            @isset($products)
+                            @foreach($products as $product)
+                                <tr>
+                                <td>{{$product->id}}</td>
+                                <td>{{$product->name}}</td>
                                 <td class="table-user" data-toggle="modal" data-target="#descriptionModal">
                                     <div>
-                                        sdfgrthy kudu kdtyuyy sdfgrthy kudu kdt yuyysdfgrth ykudu k dtyuyy sdfgrthyk udu kdtyuyy
+                                        {{$product->description}}
                                     </div>
                                 </td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>2011/04/25</td>
+                                <td>{{$product->price}}</td>
+                                <td>{{$product->stock}}</td>
+                                <td width="20%">
+                                    @isset($product->categories)
+                                    @foreach($product->categories as $category)
+                                        <span class="badge badge-light">{{$category->category->name}}</span>
+                                    @endforeach
+                                    @endisset
+                                </td>
                                 <td>
-                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteProductModal">
+                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteProductModal{{$product->id}}">
                                         <i class="fas fa-trash"></i>
                                     </a>
-                                    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editProductModal">
+                                    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
                                         <i class="fas fa-pen"></i>
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
+                            @endisset
                             </tbody>
                         </table>
                     </div>

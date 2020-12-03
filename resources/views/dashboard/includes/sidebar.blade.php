@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
             <img src="{{ asset('dashboard/img/logo/logo.png') }}" width="50" height="50"
                  alt="right step" class="d-inline-block align-self-top bg-gr-logo rounded-lg">
@@ -74,7 +74,7 @@
     <hr class="sidebar-divider">
     <div class="sidebar-heading">Setting</div>
     <li class="nav-item">
-        <a class="nav-link" href="{{route('setting.index')}}">
+        <a class="nav-link" href="{{route('settings.index')}}">
             <i class="fas fa-fw fa-cog"></i>
             <span>Setting</span>
         </a>

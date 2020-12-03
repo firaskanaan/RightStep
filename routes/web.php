@@ -27,30 +27,17 @@ Route::get('/', function () {
 Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
 
 //  Products Section
-Route::get('/showProducts', function () {
-    return view('dashboard.pages.product.showProducts');
-});
-Route::get('/addProduct', function () {
-    return view('dashboard.pages.product.addProduct');
-});
+Route::resource('products',App\Http\Controllers\Admin\ProductsController::class);
 
 
 //  Order Section
-Route::get('/showOrders', function () {
-    return view('dashboard.pages.order.showOrders');
-});
+Route::get('orders','App\Http\Controllers\Admin\OrdersController@index' )->name('orders.index');
 
 
 //  Users Section
-Route::get('/showUsers', function () {
-    return view('dashboard.pages.user.showUsers');
-});
-Route::get('/addUser', function () {
-    return view('dashboard.pages.user.addUser');
-});
+Route::resource('users',App\Http\Controllers\Admin\UsersController::class);
 
 
-//  Setting
-Route::get('/setting', function () {
-    return view('dashboard.pages.setting.setting');
-});
+//  Settings
+Route::get('settings','App\Http\Controllers\Admin\SettingsController@index' )->name('settings.index');
+

@@ -13,7 +13,7 @@
                 <div class="col-xl-4 col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary"> {{$order->name}}</h6>
+                        <h6 class="m-0 font-weight-bold text-primary"> {{$order->product->name}}</h6>
                         <div class="dropdown no-arrow">
                             @if($order['status']=='pending')
                                 <span class="badge badge-primary">Pending</span>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
                         <p class="body-text">
-                           {{$order->description}}
+                           {{$order->user->name}}
                         </p>
                         <form id="form{{$order->id}}"  class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{url('/')}}">
                             @csrf

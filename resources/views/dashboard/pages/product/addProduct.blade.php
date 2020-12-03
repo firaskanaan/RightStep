@@ -18,7 +18,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Add new product</h6>
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{url('/')}}">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{route('products.store')}}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Product name</label>
@@ -35,7 +35,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="number" min="0" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" autocomplete="price" autofocus placeholder="Product price..">
+                                    <input type="number" step="0.1" min="0" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" autocomplete="price" autofocus placeholder="Product price..">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -47,9 +47,9 @@
                                 <label for="selectCategory">Category multi</label>
                                 <select class="select2-product form-control" name="categories[]" multiple="multiple" id="selectCategory">
                                     <option disabled value="">Select Category..</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Ok, Add</button>

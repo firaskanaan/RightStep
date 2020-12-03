@@ -182,9 +182,10 @@
 <!-- /Modal delete user -->
 
 
-
+@isset($products)
+    @foreach($products as $product)
 <!-- Modal edit product -->
-<div class="modal fade show" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductsModal" aria-modal="true" >
+<div class="modal fade show" id="editProductModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="editProductsModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -194,16 +195,40 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{url('/')}}">
+                <form class="form-horizontal" enctype="multipart/form-data" action="{{route('products.update',$product -> id)}}" method="POST" >
+                    @method('PUT')
                     @csrf
                     <div class="form-group">
                         <label for="name">Product name</label>
-                        <input type="text" class="form-control" value="firas" id="name" aria-describedby="name" placeholder="User name" name="name" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autocomplete="name" autofocus id="name" aria-describedby="name" placeholder="Product name.." name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea name="description" placeholder="User description.." class="form-control"
-                                  required id="description" rows="3">firas </textarea>
+                        <textarea name="description" placeholder="Product description.." class="form-control @error('description') is-invalid @enderror" autocomplete="description" autofocus
+                                  required id="description" rows="3">{{ old('description') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input type="number" step="0.1" min="0" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" autocomplete="price" autofocus placeholder="Product price..">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Stock</label>
+                        <input type="number" min="0" class="form-control @error('stock') is-invalid @enderror" value="{{ old('stock') }}" autocomplete="stock" autofocus id="stock"
+                               placeholder="Product stock.." name="stock" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectCategory">Category multi</label>
+                        <select class="select2-product form-control" name="categories[]" multiple="multiple" id="selectCategory">
+                            <option disabled value="">Select Category..</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Ok, Edit</button>
                 </form>
@@ -218,7 +243,7 @@
 
 
 <!-- Modal delete product -->
-<div class="modal fade show" id="deleteProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductsModal" aria-modal="true" >
+<div class="modal fade show" id="deleteProductModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="editProductsModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -231,10 +256,19 @@
                 <p>Are you sure to delete this?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-danger">Yes,delete</a>
+                <form method="post"
+                      action="{{route('products.destroy',$product-> id)}}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Yes,delete</button>
+                </form>
+
             </div>
         </div>
     </div>
 </div>
 <!-- /Modal delete product -->
+
+    @endforeach
+@endisset
