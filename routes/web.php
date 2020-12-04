@@ -42,6 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 //  Settings
     Route::get('settings','App\Http\Controllers\Admin\SettingsController@index' )->name('settings.index');
+    Route::post('updateSetting','App\Http\Controllers\Admin\SettingsController@updateSetting' )->name('settings.update');
 
 
 });

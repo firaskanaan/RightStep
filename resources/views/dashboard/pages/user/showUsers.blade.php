@@ -22,38 +22,41 @@
                         <table class="table align-items-center table-flush table-hover" id="categoryTable">
                             <thead class="thead-light">
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Created at</th>
                                 <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Created at</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Created at</th>
                                 <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Created at</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                             <tbody>
+                            @isset($users)
+                                @foreach($users as $user)
                                 <tr>
-                                    <td>Tiger Nixon</td>
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->created_at}}</td>
                                     <td>
-                                        <div>
-                                            sdfgrthy kudu kdtyuyy sdfgrthy kudu kdt yuyysdfgrth ykudu k dtyuyy sdfgrthyk udu kdtyuyy
-                                        </div>
-                                    </td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal">
+                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{$user->id}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editUserModal">
+                                        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editUserModal{{$user->id}}">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </td>
                                 </tr>
+                                @endforeach
+                            @endisset
                             </tbody>
                         </table>
                     </div>

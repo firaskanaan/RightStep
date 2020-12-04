@@ -14,4 +14,8 @@ class Setting extends Model
         'currency',
         'VAT',
     ];
+
+    protected $casts=[
+      'store_state'=>'boolean'
+    ];
 }

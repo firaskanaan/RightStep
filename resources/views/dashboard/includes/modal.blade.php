@@ -23,6 +23,9 @@
 </div>
 <!-- /Modal Logout -->
 
+
+@isset($categories)
+    @foreach($categories as $category)
 <!-- Modal description category -->
 <div class="modal fade show" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionCategoryModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -35,16 +38,7 @@
             </div>
             <div class="modal-body">
                 <h5 class="font-weight-bold">Title</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ac orci phasellus egestas tellus rutrum tellus. Suspendisse sed nisi lacus
-                    sed. Erat pellentesque adipiscing commodo elit at imperdiet dui. Eget dolor morbi non arcu risus
-                    quis varius quam. Elit ullamcorper dignissim cras tincidunt. At risus viverra adipiscing at in
-                    tellus integer feugiat. Dictum non consectetur a erat nam at lectus urna. Est velit egestas dui id.
-                    Sed id semper risus in hendrerit. Malesuada fames ac turpis egestas maecenas pharetra convallis
-                    posuere. Pretium vulputate sapien nec sagittis aliquam. In hendrerit gravida rutrum quisque non.
-                    Neque ornare aenean euismod elementum nisi quis eleifend quam adipiscing. Lacus luctus accumsan
-                    tortor posuere. Urna molestie at elementum eu facilisis. Neque egestas congue quisque egestas diam.
-                    Turpis egestas integer eget aliquet nibh praesent. Egestas dui id ornare arcu odio ut.</p>
+                <p>{{$category->description}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
@@ -54,9 +48,6 @@
 </div>
 <!-- /Modal description category -->
 
-
-@isset($categories)
-    @foreach($categories as $category)
         <!-- Modal edit category -->
         <div class="modal fade show" id="editCategoryModal{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="editCateModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -128,8 +119,10 @@
 
 
 
+@isset($users)
+    @foreach($users as $user)
 <!-- Modal edit user -->
-<div class="modal fade show" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUsersModal" aria-modal="true" >
+<div class="modal fade show" id="editUserModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="editUsersModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -139,16 +132,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{url('/')}}">
+                <form class="form-horizontal" enctype="multipart/form-data" action="{{route('users.update',$user -> id)}}" method="POST" >
+                    @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="name">User name</label>
-                        <input type="text" class="form-control" value="firas" id="name" aria-describedby="name" placeholder="User name" name="name" required>
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}" autocomplete="name" autofocus id="name" aria-describedby="name" placeholder="Name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea name="description" placeholder="User description.." class="form-control"
-                                  required id="description" rows="3">firas </textarea>
+                        <label for="name">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{$user->email }}" autocomplete="email" autofocus id="email" aria-describedby="email" placeholder="Email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Password</label>
+                        <input type="password"  minlength="8" class="form-control @error('password') is-invalid @enderror" value="" placeholder="leave blank if you don't want to change it " name="password" >
                     </div>
                     <button type="submit" class="btn btn-primary">Ok, Edit</button>
                 </form>
@@ -163,7 +160,7 @@
 
 
 <!-- Modal delete user -->
-<div class="modal fade show" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="editUsersModal" aria-modal="true" >
+<div class="modal fade show" id="deleteUserModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="editUsersModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -176,14 +173,20 @@
                 <p>Are you sure to delete this?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-danger">Yes,delete</a>
+                <form method="post"
+                      action="{{route('users.destroy',$user-> id)}}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Yes,delete</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 <!-- /Modal delete user -->
-
+    @endforeach
+@endisset
 
 @isset($products)
     @foreach($products as $product)

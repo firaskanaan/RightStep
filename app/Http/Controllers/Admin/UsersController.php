@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Fortify\PasswordValidationRules;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+    use PasswordValidationRules;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::get();
+        return view('dashboard.pages.user.showUsers',compact('users'));
     }
 
     /**
@@ -24,7 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pages.user.addUser');
     }
 
     /**
@@ -35,7 +41,20 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validations = $request->validate([
+            "name" => ['required', 'max:255'],
+            "password" =>  $this->passwordRules(),
+            "email" => ['required', 'string', 'email', 'max:255', 'unique:users']
+        ]);
+        $validations['password']=Hash::make($request->password);
+        $user=User::create($validations);
+
+        if($user){
+            return back()->with('success','User saved.');
+        }
+        else
+            return back()->with('error','Sorry, the User not added.');
+
     }
 
     /**
@@ -69,7 +88,20 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validations = $request->validate([
+            "name" => ['required', 'max:255'],
+            "email" => ['required', 'string', 'email', 'max:255', 'unique:users']
+        ]);
+        $user=User::findOrFail($id);
+        $data= $request->all();
+        if(!empty($request->get('password')))
+            $data['password']=Hash::make($request->get('password'));
+        else
+            unset($data['password']);
+
+        $user->update($data);
+        return back()->with('success','User edited.');
+
     }
 
     /**
@@ -80,6 +112,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::findOrFail($id);
+        $user->delete();
+        return back()->with('success','User deleted.');
     }
 }
