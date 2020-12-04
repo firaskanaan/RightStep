@@ -1219,7 +1219,12 @@ a:focus {
 .sidebar-dark.toggled #sidebarToggle::after {
   color: rgba(255, 255, 255, .5)
 }
-
+.select2-container .select2-selection--single {
+    height: 40px!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 5px!important;
+}
 .btn-icon-split {
   padding: 0;
   overflow: hidden;

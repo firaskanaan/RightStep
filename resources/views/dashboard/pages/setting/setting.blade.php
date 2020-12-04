@@ -29,8 +29,7 @@
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $setting->store_name }}" autocomplete="name" autofocus id="name" aria-describedby="name" placeholder="Store name.." name="store_name" required>
                     </div>
                         <div class="form-group">
-{{--                            <label for="currency">Currency:</label>--}}
-                            <label for="selectCategory">Category multi</label>
+                            <label for="currency">Currency:</label>
                             <select name="currency"  class="select2-setting form-control" id="currency">
                                     <option value="SAR">SAR Saudi Riyal</option>
                                     <option value="BHD">BHD Bahraini Dinar</option>
@@ -87,7 +86,6 @@
             $('.select2-setting').select2();
             $('.select2-setting').val('{{$setting->currency}}');
             $('.select2-setting').trigger('change');
-
         });
     </script>
 @endsection

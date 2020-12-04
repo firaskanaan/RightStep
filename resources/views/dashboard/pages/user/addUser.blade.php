@@ -22,22 +22,20 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autocomplete="name" autofocus id="name" aria-describedby="name" placeholder="Name" name="name" required>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autocomplete="name" autofocus id="name" aria-describedby="name" placeholder="Name.." name="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="name">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" autocomplete="email" autofocus id="email" aria-describedby="email" placeholder="Email" name="email" required>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" autocomplete="email" autofocus id="email" aria-describedby="email" placeholder="Email.." name="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="name">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" autocomplete="password" autofocus id="name" aria-describedby="password" placeholder="Password" name="password" required>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" autocomplete="password" autofocus id="password" aria-describedby="password" placeholder="Password.." name="password" required>
                             </div>
-
                             <div class="form-group">
                                 <label for="name">Confirm Password</label>
-                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}" autocomplete="password_confirmation" autofocus id="password" aria-describedby="password" placeholder="Confirm Password" name="password_confirmation" required>
+                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}" autocomplete="password_confirmation" autofocus id="password_confirmation" aria-describedby="password_confirmation" placeholder="Confirm Password.." name="password_confirmation" required>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Ok, Add</button>
                         </form>
                     </div>
@@ -45,9 +43,6 @@
             </div>
 
         </div>
-
-
-
     </div>
     <!---Container Fluid-->
 @endsection

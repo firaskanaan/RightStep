@@ -44,7 +44,7 @@
                                 @isset($categories)
                                 @foreach($categories as $category)
                                 <tr>
-                                    <td>{{$category->id}}</td>
+                                    <td>{{$loop->iteration}}</td>
                                     <td>{{$category->name}}</td>
                                     <td class="table-user" data-toggle="modal" data-target="#descriptionModal">
                                         <div>

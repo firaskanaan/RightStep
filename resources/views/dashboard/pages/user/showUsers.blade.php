@@ -42,7 +42,7 @@
                             @isset($users)
                                 @foreach($users as $user)
                                 <tr>
-                                    <td>{{$user->id}}</td>
+                                    <td>{{$loop->iteration}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->created_at}}</td>

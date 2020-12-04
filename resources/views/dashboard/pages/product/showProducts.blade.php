@@ -46,9 +46,9 @@
                             @isset($products)
                             @foreach($products as $product)
                                 <tr>
-                                <td>{{$product->id}}</td>
+                                <td>{{$loop->iteration}}</td>
                                 <td>{{$product->name}}</td>
-                                <td class="table-user" data-toggle="modal" data-target="#descriptionModal">
+                                <td class="table-user" data-toggle="modal" data-target="#descriptionProductModal{{$product->id}}">
                                     <div>
                                         {{$product->description}}
                                     </div>
@@ -57,16 +57,16 @@
                                 <td>{{$product->stock}}</td>
                                 <td width="20%">
                                     @isset($product->categories)
-                                    @foreach($product->categories as $category)
-                                        <span class="badge badge-light">{{$category->category->name}}</span>
-                                    @endforeach
+                                        @foreach($product->categories as $category)
+                                            <span class="badge badge-light">{{$category->category->name}}</span>
+                                        @endforeach
                                     @endisset
                                 </td>
                                 <td>
                                     <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteProductModal{{$product->id}}">
                                         <i class="fas fa-trash"></i>
                                     </a>
-                                    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editProductModal{{$product->id}}">
+                                    <a href="{{route('products.edit', $product->id)}}" class="btn btn-success btn-sm">
                                         <i class="fas fa-pen"></i>
                                     </a>
                                 </td>

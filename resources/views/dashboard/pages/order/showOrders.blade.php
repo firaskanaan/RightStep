@@ -15,37 +15,38 @@
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary"> {{$order->product->name}}</h6>
                         <div class="dropdown no-arrow">
-                            @if($order['status']=='pending')
+                            @if($order['state']=='pending')
                                 <span class="badge badge-primary">Pending</span>
-                            @elseif($order['status']=='shipped')
+                            @elseif($order['state']=='shipped')
                                 <span class="badge badge-success">Shipped</span>
                             @else
                                 <span class="badge badge-danger">Canceled</span>
                             @endif
                         </div>
+{{--                        <p> new order by   {{$order->user->name}}</p>--}}
                     </div>
                     <div class="card-body">
                         <p class="body-text">
-                           {{$order->user->name}}
+                            {{$order->product->description}}
                         </p>
                         <form id="form{{$order->id}}"  class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{url('/')}}">
                             @csrf
                             <div class="col-md-4 custom-control custom-switch d-inline">
                                 <input type="checkbox" class="custom-control-input" id="{{$order->name}}{{$loop->iteration}}"
                                        value="{{$order->id}}" onChange="updateStatus({{$order->id}});"
-                                       {{$order['status']=='pending' ? 'checked' : ''}} name="status">
+                                       {{$order['state']=='pending' ? 'checked' : ''}} name="state">
                                 <label class="custom-control-label" for="{{$order->name}}{{$loop->iteration}}">Pending</label>
                             </div>
                             <div class="col-md-4 custom-control custom-switch d-inline">
                                 <input type="checkbox" class="custom-control-input check-success" id="{{$order->name}}{{$loop->iteration +1}}"
                                        value="{{$order->id}}" onChange="updateStatus({{$order->id}});"
-                                       {{$order['status']=='shipped' ? 'checked' : ''}} name="status">
+                                       {{$order['state']=='shipped' ? 'checked' : ''}} name="state">
                                 <label class="custom-control-label" for="{{$order->name}}{{$loop->iteration +1}}">Shipped</label>
                             </div>
                             <div class="col-md-4 custom-control custom-switch d-inline">
                                 <input type="checkbox" class="custom-control-input check-danger" id="{{$order->name}}{ $loop->iteration +2}}"
                                        value="{{$order->id}}" onChange="updateStatus({{$order->id}});"
-                                       {{$order['status']=='canceled' ? 'checked' : ''}} name="status">
+                                       {{$order['state']=='canceled' ? 'checked' : ''}} name="state">
                                 <label class="custom-control-label" for="{{$order->name}}{{$loop->iteration +2}}">Canceled</label>
                             </div>
                             <div class="small text-gray-500 message-time font-weight-bold text-right mt-2">{{$order->created_at}}</div>

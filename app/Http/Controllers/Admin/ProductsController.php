@@ -87,7 +87,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+         $product=Product::with('categories')->findOrFail($id);
+         $categories=Category::get();
+        return view('dashboard.pages.product.editProduct',compact(['product','categories']));
     }
 
     /**
@@ -99,7 +101,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request->all();
     }
 
     /**
