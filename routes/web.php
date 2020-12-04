@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,30 +15,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 //  Login Section
-Route::get('/login', function () {
-    return view('dashboard.pages.login');
-});
+Route::get('/','\App\Http\Controllers\Admin\LoginController@index');
 
-//  Home Section
-Route::get('/', function () {
-    return view('dashboard.pages.dashboard');
-});
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/admin', function () {
+        return view('dashboard.pages.dashboard');
+    })->name('admin');
+
 
 //  Categories Section
-Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
 
 //  Products Section
-Route::resource('products',App\Http\Controllers\Admin\ProductsController::class);
+    Route::resource('products',App\Http\Controllers\Admin\ProductsController::class);
 
 
 //  Order Section
-Route::get('orders','App\Http\Controllers\Admin\OrdersController@index' )->name('orders.index');
+    Route::get('orders','App\Http\Controllers\Admin\OrdersController@index' )->name('orders.index');
 
 
 //  Users Section
-Route::resource('users',App\Http\Controllers\Admin\UsersController::class);
+    Route::resource('users',App\Http\Controllers\Admin\UsersController::class);
 
 
 //  Settings
-Route::get('settings','App\Http\Controllers\Admin\SettingsController@index' )->name('settings.index');
+    Route::get('settings','App\Http\Controllers\Admin\SettingsController@index' )->name('settings.index');
 
+
+});

@@ -12,8 +12,11 @@
                 <p>Are you sure you want to logout?</p>
             </div>
             <div class="modal-footer">
+                <form action="/logout" method="post">
+                    @csrf
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-primary">Logout</a>
+                <button type="submit" class="btn btn-primary">Logout</button>
+                </form>
             </div>
         </div>
     </div>
