@@ -4344,7 +4344,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-input:disabled~.custom-control-label::before {
-  background-color: #eaecf4;
+  /*background-color: #eaecf4;*/
 }
 
 .custom-control-label {
@@ -4452,7 +4452,7 @@ input[type="button"].btn-block {
 }
 
 .custom-switch .custom-control-input:disabled:checked~.custom-control-label::before {
-  background-color: rgba(78, 115, 223, 0.5);
+  /*background-color: rgba(78, 115, 223, 0.5);*/
 }
 
 .custom-select {

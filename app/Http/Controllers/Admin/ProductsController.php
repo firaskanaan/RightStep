@@ -51,7 +51,6 @@ class ProductsController extends Controller
             "stock" => 'required|numeric',
             "categories"=>'required|array'
         ]);
-        $request->all();
         $product=Product::create($validations);
 
         if($product){
@@ -101,7 +100,28 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        $validations = $request->validate([
+            "name" => 'required',
+            "description" => 'required',
+            "price" => 'required|numeric',
+            "stock" => 'required|numeric',
+            "categories"=>'required|array'
+        ]);
+        $product=Product::findOrFail($id);
+
+        if($product){
+            ProductsCategory::where('product_id',$product->id)->delete();
+            $product->update($validations);
+            foreach ($validations['categories'] as $category){
+                ProductsCategory::create([
+                    'product_id'=>$product->id,
+                    'category_id'=>$category
+                ]);
+            }
+            return redirect('/products')->with('success','Product edited.');
+        }
+        else
+            return back()->with('error','Sorry, the product not edited.');
     }
 
     /**

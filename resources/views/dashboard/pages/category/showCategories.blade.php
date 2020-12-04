@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$category->name}}</td>
-                                    <td class="table-user" data-toggle="modal" data-target="#descriptionModal">
+                                    <td class="table-user" data-toggle="modal" data-target="#descriptionModal{{$category->id}}">
                                         <div>
                                             {{$category->description}}
                                         </div>

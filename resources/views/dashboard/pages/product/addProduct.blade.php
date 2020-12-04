@@ -44,7 +44,7 @@
                                      placeholder="Product stock.." name="stock" required>
                             </div>
                             <div class="form-group">
-                                <label for="selectCategory">Category multi</label>
+                                <label for="selectCategory">Category</label>
                                 <select class="select2-product form-control" name="categories[]" multiple="multiple" id="selectCategory" required>
                                     <option disabled value="">Select Category..</option>
                                     @foreach($categories as $category)
@@ -75,7 +75,7 @@
     <script>
         $(document).ready(function () {
             $('.select2-product').select2({
-                placeholder: "Select a Product.."
+                placeholder: "Select a Category.."
             });
         });
     </script>

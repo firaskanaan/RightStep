@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 //  Login Section
 Route::get('/','\App\Http\Controllers\Admin\LoginController@index');
+Route::post('/','\App\Http\Controllers\Admin\LoginController@index');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -34,6 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 //  Order Section
     Route::get('orders','App\Http\Controllers\Admin\OrdersController@index' )->name('orders.index');
+    Route::post('updateOrder/{id}','App\Http\Controllers\Admin\OrdersController@updateOrder')->name('orders.update');
 
 
 //  Users Section

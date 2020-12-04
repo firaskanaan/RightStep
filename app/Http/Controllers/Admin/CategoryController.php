@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ProductsCategory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -107,6 +108,7 @@ class CategoryController extends Controller
     {
         $category=Category::findOrFail($id);
         $category->delete();
+        ProductsCategory::where('category_id',$id)->delete();
         return back()->with('success','Category deleted.');
 
     }

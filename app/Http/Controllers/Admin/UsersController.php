@@ -90,7 +90,7 @@ class UsersController extends Controller
     {
         $validations = $request->validate([
             "name" => ['required', 'max:255'],
-            "email" => ['required', 'string', 'email', 'max:255', 'unique:users']
+            "email" => ['required', 'string', 'email', 'max:255']
         ]);
         $user=User::findOrFail($id);
         $data= $request->all();

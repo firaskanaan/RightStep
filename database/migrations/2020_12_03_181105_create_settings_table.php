@@ -21,6 +21,7 @@ class CreateSettingsTable extends Migration
             $table->integer('VAT');
             $table->timestamps();
         });
+
     }
 
     /**

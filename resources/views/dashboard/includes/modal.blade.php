@@ -27,7 +27,7 @@
 @isset($categories)
     @foreach($categories as $category)
 <!-- Modal description category -->
-<div class="modal fade show" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionCategoryModal" aria-modal="true" >
+<div class="modal fade show" id="descriptionModal{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="descriptionCategoryModal" aria-modal="true" >
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -37,7 +37,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h5 class="font-weight-bold">Title</h5>
+                <h5 class="font-weight-bold">{{$category->name}}</h5>
                 <p>{{$category->description}}</p>
             </div>
             <div class="modal-footer">

@@ -21,4 +21,14 @@ class OrdersController extends Controller
         return view('dashboard.pages.order.showOrders',compact('orders'));
 
     }
+
+    public function updateOrder(Request $request,$id){
+        $validations = $request->validate([
+            "state" => 'required',
+        ]);
+         $order=Order::findOrFail($id);
+         $order->update(['state'=>$request->get('state')]);
+         return back()->with('success','Order state updated.');
+
+    }
 }

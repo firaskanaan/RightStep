@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('product_id');
-            $table->enum('state',['shipped','pending','canceled']);
+            $table->enum('state',['shipped','pending','canceled'])->default('pending');
             $table->timestamps();
         });
     }

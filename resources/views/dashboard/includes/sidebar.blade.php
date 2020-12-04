@@ -6,9 +6,12 @@
                  alt="right step" class="d-inline-block align-self-top bg-gr-logo rounded-lg">
         </div>
         <div class="sidebar-brand-text mx-3">
-            Right Step
-            <span class="statue-store text-success"> ● <small>open</small></span>
-            <span class="statue-store text-danger"> ● <small>close</small></span>
+            {{\App\Models\Setting::first()->store_name}}
+            @if(\App\Models\Setting::first()->store_state==0)
+                <span class="statue-store text-danger"> ● <small>close</small></span>
+            @else
+                <span class="statue-store text-success"> ● <small>open</small></span>
+            @endif
         </div>
     </a>
     <hr class="sidebar-divider my-0">
@@ -77,7 +80,7 @@
     <li class="nav-item {{Illuminate\Support\Facades\Route::current()->uri == 'settings' ? 'active':'' }}">
         <a class="nav-link" href="{{route('settings.index')}}">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Setting</span>
+            <span>Settings</span>
         </a>
     </li>
 
